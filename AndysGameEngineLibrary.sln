@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndysGameEngine", "AndysGameEngine\AndysGameEngine.csproj", "{AB21DF91-84FC-4EA6-8389-DDBA2A8965DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndysGameEngineLibrary", "AndysGameEngineLibrary\AndysGameEngineLibrary.csproj", "{AB21DF91-84FC-4EA6-8389-DDBA2A8965DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-namespace AndysGameEngine;
+namespace AndysGameEngineLibrary;
 
 public abstract class GameComponent : IGameComponent
 {
