@@ -30,4 +30,13 @@ public readonly struct Vector3
 	
 	public static Vector3 operator *(Vector3 a, Vector3 b) =>
 		new(a.X * b.X, a.Y * b.Y, a.Z * b.Z);
+
+	public static bool operator ==(Vector3 a, Vector3 b) =>
+		Math.Abs(a.X - b.X) < float.Epsilon && Math.Abs(a.Y - b.Y) < float.Epsilon && Math.Abs(a.Z - b.Z) < float.Epsilon;
+
+	public static bool operator !=(Vector3 a, Vector3 b) => !(a == b);
+	
+	public bool Equals(Vector3 other) => X.Equals(other.X) && Y.Equals(other.Y) && Z.Equals(other.Z);
+	public override bool Equals(object obj) => obj is Vector3 other && Equals(other);
+	public override int GetHashCode() => HashCode.Combine(X, Y, Z);
 }
