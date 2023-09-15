@@ -13,14 +13,18 @@ public class GameObject
 	}
 	
 	public GameObject Parent { get; private set; }
+	public Guid Id { get; } = Guid.NewGuid();
 	public string Name { get; set; }
+	public bool IsEnabled { get; set; } = true;
+	public int ChildCount => _children.Count;
 	
 	public void Start()
 	{
 		foreach (IGameComponent component in _gameComponents)
-		{
 			component.Start();
-		}
+
+		foreach (GameObject child in _children)
+			child.Start();
 	}
 
 	public void Update()
@@ -30,6 +34,12 @@ public class GameObject
 			if (component.IsEnabled)
 				component.Update();
 		}
+
+		foreach (GameObject child in _children)
+		{
+			if (child.IsEnabled)
+				child.Update();
+		}
 	}
 
 	public void SetParent(GameObject newParent)
@@ -37,16 +47,6 @@ public class GameObject
 		Parent?.RemoveChild(this);
 		Parent = newParent;
 		Parent?.AddChild(this);
-	}
-
-	public void RemoveChild(GameObject gameObject)
-	{
-		
-	}
-
-	public void AddChild(GameObject gameObject)
-	{
-		
 	}
 
 	/// <summary>
@@ -95,4 +95,10 @@ public class GameObject
 		if (componentToRemove != null && _gameComponents.Remove(componentToRemove))
 			componentToRemove.OnDestroyed();
 	}
+
+	private void RemoveChild(GameObject gameObject) =>
+		_children.Remove(gameObject);
+
+	private void AddChild(GameObject gameObject) =>
+		_children.Add(gameObject);
 }
